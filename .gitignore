@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 stitch_fittrack_program_planner/
+.vite/
 
 # Editor directories and files
 .vscode/*
