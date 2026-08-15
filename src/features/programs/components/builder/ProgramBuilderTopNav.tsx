@@ -18,7 +18,7 @@ export const ProgramBuilderTopNav = ({ activeTab, searchValue, onSearchChange, o
       <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-max-width mx-auto">
         <div className="flex items-center gap-4">
           <span className="font-display-lg text-headline-lg-mobile md:text-display-lg font-black tracking-tighter text-primary">
-            BIO_KERNEL
+            FitTrack
           </span>
           <div className="hidden md:flex gap-6 ml-8">
             {tabs.map((tab) => (

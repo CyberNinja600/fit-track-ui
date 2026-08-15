@@ -12,10 +12,13 @@ export const useLogin = () => {
       const response = await authApi.login(email, password)
       return response.data
     },
-    onSuccess: (data) => {
-      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, data.accessToken)
-      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken)
-      setUser(data.user)
+    onSuccess: (payload) => {
+      const tokenData = payload as { accessToken?: string; refreshToken?: string; user?: any }
+      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, tokenData.accessToken || '')
+      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, tokenData.refreshToken || '')
+      if (tokenData.user) {
+        setUser(tokenData.user)
+      }
       queryClient.invalidateQueries({ queryKey: ['user'] })
     },
     onError: (error: any) => {
@@ -43,10 +46,13 @@ export const useRegister = () => {
       const response = await authApi.register(email, password, name, role)
       return response.data
     },
-    onSuccess: (data) => {
-      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, data.accessToken)
-      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken)
-      setUser(data.user)
+    onSuccess: (payload) => {
+      const tokenData = payload as { accessToken?: string; refreshToken?: string; user?: any }
+      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, tokenData.accessToken || '')
+      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, tokenData.refreshToken || '')
+      if (tokenData.user) {
+        setUser(tokenData.user)
+      }
       queryClient.invalidateQueries({ queryKey: ['user'] })
     },
     onError: (error: any) => {
