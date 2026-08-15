@@ -20,8 +20,8 @@ export const ProgramBuilderSidebar = ({ activeItem, onNavigate, onNewProgram }: 
             <span className="material-symbols-outlined text-on-primary text-[20px]">architecture</span>
           </div>
           <div>
-            <h2 className="font-display-lg text-[18px] font-bold text-primary leading-none">BIO_KERNEL</h2>
-            <p className="font-data-mono text-[10px] text-on-surface-variant opacity-60">V2.4.0_STABLE</p>
+            <h2 className="font-display-lg text-[18px] font-bold text-primary leading-none">FitTrack</h2>
+            <p className="font-data-mono text-[10px] text-on-surface-variant opacity-60">V2026.1.0_STABLE</p>
           </div>
         </div>
       </div>

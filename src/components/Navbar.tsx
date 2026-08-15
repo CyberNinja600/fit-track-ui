@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Bell, LayoutGrid, LogOut, Search, Settings, User, Home, ListTodo, CalendarDays, Users, BarChart3 } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
+import { Codicon } from './Codicon'
 
 export const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuthStore()
@@ -10,11 +10,11 @@ export const Navbar = () => {
   if (!isAuthenticated) return null
 
   const navItems = [
-    { label: 'Dashboard', to: '/dashboard', icon: Home },
-    { label: 'Programs', to: '/programs', icon: LayoutGrid },
-    { label: 'Calendar', to: '/programs/1/calendar', icon: CalendarDays },
-    { label: 'Clients', to: '/clients', icon: Users },
-    { label: 'Analytics', to: '/analytics', icon: BarChart3 },
+    { label: 'Dashboard', to: '/dashboard', icon: 'home' },
+    { label: 'Programs', to: '/programs', icon: 'layout-sidebar-left' },
+    { label: 'Calendar', to: '/calendar', icon: 'calendar' },
+    { label: 'Clients', to: '/clients', icon: 'account' },
+    { label: 'Analytics', to: '/analytics', icon: 'graph' },
   ]
 
   const isActive = (path: string) => {
@@ -26,11 +26,11 @@ export const Navbar = () => {
     <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-slate-700/80 bg-[#0d1a2d]">
       <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-6">
-          <Link to="/dashboard" className="font-black tracking-[-0.08em] text-2xl text-[#7dd3fc] uppercase">
-            BIO_KERNEL
+          <Link to="/dashboard" className="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary uppercase glitch-hover">
+            FitTrack
           </Link>
           <nav className="flex items-center gap-1 lg:hidden">
-            {navItems.map(({ label, to, icon: Icon }) => (
+            {navItems.map(({ label, to, icon }) => (
               <Link
                 key={label}
                 to={to}
@@ -38,7 +38,7 @@ export const Navbar = () => {
                   isActive(to) ? 'bg-slate-800 text-cyan-300' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
                 }`}
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Codicon name={icon} className="text-[12px] leading-none" />
                 {label}
               </Link>
             ))}
@@ -47,7 +47,7 @@ export const Navbar = () => {
 
         <div className="flex items-center gap-3">
           <div className="hidden items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 md:flex">
-            <Search className="h-4 w-4 text-slate-400" />
+            <Codicon name="search" className="text-sm text-slate-400" />
             <input
               type="text"
               placeholder="CMD+K TO SEARCH"
@@ -55,14 +55,14 @@ export const Navbar = () => {
             />
           </div>
           <button type="button" className="rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white">
-            <Bell className="h-4 w-4" />
+            <Codicon name="bell" className="text-sm leading-none" />
           </button>
           <button type="button" className="rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white">
-            <Settings className="h-4 w-4" />
+            <Codicon name="settings-gear" className="text-sm leading-none" />
           </button>
           <div className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-2 py-1.5">
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 text-slate-200">
-              <User className="h-4 w-4" />
+              <Codicon name="account" className="text-sm leading-none" />
             </div>
             <div className="hidden text-left sm:block">
               <div className="text-xs font-medium text-slate-200">{user?.name ?? 'User'}</div>
@@ -77,7 +77,7 @@ export const Navbar = () => {
             }}
             className="inline-flex items-center gap-2 rounded-md border border-slate-700 bg-slate-900/60 px-3 py-2 text-xs font-medium uppercase tracking-wide text-slate-200 transition hover:border-cyan-500 hover:text-cyan-300"
           >
-            <LogOut className="h-4 w-4" />
+            <Codicon name="log-out" className="text-sm leading-none" />
             Logout
           </button>
         </div>

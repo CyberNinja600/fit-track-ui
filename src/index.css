@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap');
+@import '../src/assets/codicon/codicon.css';
 
 @tailwind base;
 @tailwind components;
