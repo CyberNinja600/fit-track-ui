@@ -39,51 +39,16 @@ function App() {
           <Route
             path={ROUTES.DASHBOARD}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="trainer">
                 <Dashboard />
               </ProtectedRoute>
             }
           />
-          <Route
-            path={ROUTES.PROGRAMS}
-            element={
-              <ProtectedRoute>
-                <Programs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.CREATE_PROGRAM}
-            element={
-              <ProtectedRoute requiredRole="trainer">
-                <CreateProgram />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.PROGRAM_DETAIL}
-            element={
-              <ProtectedRoute>
-                <ProgramDetail />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.EDIT_PROGRAM}
-            element={
-              <ProtectedRoute requiredRole="trainer">
-                <EditProgram />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.PROGRAM_CALENDAR}
-            element={
-              <ProtectedRoute>
-                <ProgramCalendar />
-              </ProtectedRoute>
-            }
-          />
+          <Route path={ROUTES.PROGRAMS} element={<Programs />} />
+          <Route path={ROUTES.CREATE_PROGRAM} element={<CreateProgram />} />
+          <Route path={ROUTES.PROGRAM_DETAIL} element={<ProgramDetail />} />
+          <Route path={ROUTES.EDIT_PROGRAM} element={<EditProgram />} />
+          <Route path={ROUTES.PROGRAM_CALENDAR} element={<ProgramCalendar />} />
 
           {/* Fallback */}
           <Route path={ROUTES.HOME} element={<Navigate to={isAuthenticated ? ROUTES.DASHBOARD : ROUTES.LOGIN} />} />

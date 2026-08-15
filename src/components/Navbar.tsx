@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import { useAuthStore } from '../store/authStore'
-import { useLogout } from '../hooks/useAuth'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from './Button'
 import { LogOut, Home, ListTodo, LayoutGrid, User } from 'lucide-react'
 
 export const Navbar = () => {
-  const { user, isAuthenticated } = useAuthStore()
-  const { mutate: logout } = useLogout()
+  const { user, isAuthenticated, logout } = useAuthStore()
   const location = useLocation()
+  const navigate = useNavigate()
 
   const isActive = (path: string) => location.pathname === path
 
@@ -45,7 +44,15 @@ export const Navbar = () => {
               <span className="text-sm text-gray-700">{user?.name}</span>
               <span className="text-xs bg-primary-100 text-primary-800 px-2 py-0.5 rounded-full capitalize">{user?.role}</span>
             </div>
-            <Button variant="ghost" size="sm" onClick={() => logout()} className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                logout()
+                navigate('/login')
+              }}
+              className="flex items-center gap-2"
+            >
               <LogOut className="w-4 h-4" />
               Logout
             </Button>

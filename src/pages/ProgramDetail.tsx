@@ -1,25 +1,17 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { Layout } from '../components/Layout'
-import { useProgram, useDeleteProgram, useJoinProgram, useLeaveProgram } from '../hooks/usePrograms'
 import { useAuthStore } from '../store/authStore'
 import { Button } from '../components/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/Card'
 import { Badge } from '../components/Badge'
-import { Alert } from '../components/Alert'
-import { CardSkeleton } from '../components/Skeleton'
 import { Users, ArrowLeft } from 'lucide-react'
+import { findStaticProgram } from '../data/staticFitTrackData'
 
 export const ProgramDetail = () => {
   const { id = '' } = useParams()
   const navigate = useNavigate()
   const { user } = useAuthStore()
-  const { data: program, isLoading } = useProgram(id)
-  const { mutate: deleteProgram, isPending: isDeleting } = useDeleteProgram()
-  const { mutate: joinProgram, isPending: isJoining } = useJoinProgram()
-  const { mutate: leaveProgram, isPending: isLeaving } = useLeaveProgram()
-
-  if (isLoading) return <Layout><CardSkeleton /></Layout>
-  if (!program) return <Layout><Alert variant="error" title="Program not found" /></Layout>
+  const program = findStaticProgram(id)
 
   const isTrainer = program.trainerId === user?.id
   const isMember = program.members?.some((m) => m.id === user?.id)
@@ -66,18 +58,18 @@ export const ProgramDetail = () => {
               {isTrainer && (
                 <>
                   <Button onClick={() => navigate(`/programs/${id}/edit`)}>Edit</Button>
-                  <Button variant="danger" isLoading={isDeleting} onClick={() => deleteProgram(id)}>
+                  <Button variant="danger" onClick={() => console.log(`Static delete clicked for program ${id}`)}>
                     Delete
                   </Button>
                 </>
               )}
               {!isTrainer && !isMember && (
-                <Button isLoading={isJoining} onClick={() => joinProgram(id)}>
+                <Button onClick={() => console.log(`Static join clicked for program ${id}`)}>
                   Join Program
                 </Button>
               )}
               {!isTrainer && isMember && (
-                <Button variant="danger" isLoading={isLeaving} onClick={() => leaveProgram(id)}>
+                <Button variant="danger" onClick={() => console.log(`Static leave clicked for program ${id}`)}>
                   Leave Program
                 </Button>
               )}

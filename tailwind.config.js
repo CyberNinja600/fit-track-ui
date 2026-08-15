@@ -164,6 +164,35 @@ export default {
           content: "'_'",
           animation: "blink 1s step-end infinite",
         },
+        ".drag-preview": {
+          opacity: "0.5",
+          cursor: "grabbing",
+        },
+        ".custom-scrollbar::-webkit-scrollbar": {
+          height: "6px",
+          width: "6px",
+        },
+        ".custom-scrollbar::-webkit-scrollbar-track": {
+          background: "#0c1321",
+        },
+        ".custom-scrollbar::-webkit-scrollbar-thumb": {
+          background: "#404753",
+          "border-radius": "10px",
+        },
+        ".custom-scrollbar::-webkit-scrollbar-thumb:hover": {
+          background: "#a2c9ff",
+        },
+        ".bento-grid": {
+          display: "grid",
+          "grid-template-columns": "repeat(12, 1fr)",
+          gap: "24px",
+        },
+        ".glitch-hover:hover": {
+          "text-shadow": "2px 0 #2593f8, -2px 0 #df7404",
+        },
+        ".chart-bar": {
+          transition: "height 1s cubic-bezier(0.4, 0, 0.2, 1)",
+        },
         "@keyframes blink": {
             "from, to": { opacity: "1" },
             "50%": { opacity: "0" },

@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+stitch_fittrack_program_planner/
 
 # Editor directories and files
 .vscode/*
