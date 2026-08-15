@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { RegisterForm } from '../features/auth/components/RegisterForm'
 import { useAuthStore } from '../store/authStore'
+import { Codicon } from '../components/Codicon'
 
 export const Register = () => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ export const Register = () => {
         <div className="flex items-center gap-4">
           <span className="font-data-mono text-xs text-on-surface-variant hidden md:block">V2.4.0_STABLE</span>
           <div className="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center">
-            <span className="material-symbols-outlined text-sm">security</span>
+            <Codicon name="shield" className="text-sm" />
           </div>
         </div>
       </header>

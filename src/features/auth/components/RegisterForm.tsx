@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRegister } from '../../../hooks/useAuth'
+import { Input } from '../../../components/Input'
+import { Codicon } from '../../../components/Codicon'
 
 type UserRole = 'member' | 'trainer'
 
@@ -72,9 +74,7 @@ export const RegisterForm = () => {
                     onChange={(e) => setRole(e.target.value as UserRole)}
                   />
                   <div className="p-4 border border-outline-variant bg-surface-container-highest/30 peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center gap-2 group-active:scale-95">
-                    <span className="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">
-                      {currentRole === 'member' ? 'person' : 'fitness_center'}
-                    </span>
+                    <Codicon name={currentRole === 'member' ? 'account' : 'run'} className="text-on-surface-variant peer-checked:text-primary text-xl" />
                     <span className="font-data-mono text-xs uppercase tracking-tighter text-on-surface-variant peer-checked:text-primary">
                       I am a {currentRole === 'member' ? 'Member' : 'Trainer'}
                     </span>
@@ -85,71 +85,50 @@ export const RegisterForm = () => {
           </div>
 
           <div className="space-y-5">
-            <div className="group">
-              <label className="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary" htmlFor="name">
-                Full_Name
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant/50 text-lg">
-                  fingerprint
-                </span>
-                <input
-                  className={inputClassName}
-                  id="name"
-                  name="name"
-                  placeholder="User_Identifier"
-                  required
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              {errors.name && <p className="mt-1.5 ml-1 font-data-mono text-xs text-error">{errors.name}</p>}
-            </div>
+            <Input
+              label="Full_Name"
+              icon="person"
+              id="name"
+              type="text"
+              placeholder="User_Identifier"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              error={errors.name}
+              labelClassName="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary"
+              errorClassName="mt-1.5 ml-1 font-data-mono text-xs text-error"
+              className={inputClassName}
+              iconClassName="left-4 text-on-surface-variant/50 text-lg"
+            />
 
-            <div className="group">
-              <label className="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary" htmlFor="email">
-                Auth_Email
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant/50 text-lg">
-                  alternate_email
-                </span>
-                <input
-                  className={inputClassName}
-                  id="email"
-                  name="email"
-                  placeholder="name@domain.com"
-                  required
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              {errors.email && <p className="mt-1.5 ml-1 font-data-mono text-xs text-error">{errors.email}</p>}
-            </div>
+            <Input
+              label="Auth_Email"
+              icon="mail"
+              id="email"
+              type="email"
+              placeholder="name@domain.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={errors.email}
+              labelClassName="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary"
+              errorClassName="mt-1.5 ml-1 font-data-mono text-xs text-error"
+              className={inputClassName}
+              iconClassName="left-4 text-on-surface-variant/50 text-lg"
+            />
 
-            <div className="group">
-              <label className="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary" htmlFor="password">
-                Access_Key
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant/50 text-lg">
-                  terminal
-                </span>
-                <input
-                  className={inputClassName}
-                  id="password"
-                  name="password"
-                  placeholder="************"
-                  required
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              {errors.password && <p className="mt-1.5 ml-1 font-data-mono text-xs text-error">{errors.password}</p>}
-            </div>
+            <Input
+              label="Access_Key"
+              icon="key"
+              id="password"
+              type="password"
+              placeholder="************"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={errors.password}
+              labelClassName="block font-data-mono text-xs text-on-surface-variant uppercase mb-1.5 ml-1 group-focus-within:text-primary"
+              errorClassName="mt-1.5 ml-1 font-data-mono text-xs text-error"
+              className={inputClassName}
+              iconClassName="left-4 text-on-surface-variant/50 text-lg"
+            />
           </div>
 
           <div className="flex items-start gap-3">
@@ -181,7 +160,7 @@ export const RegisterForm = () => {
             >
               {isPending ? (
                 <>
-                  <span className="animate-spin material-symbols-outlined">refresh</span>
+                  <Codicon name="sync" className="animate-spin" />
                   <span className="uppercase tracking-widest font-bold">Synchronizing...</span>
                 </>
               ) : (
@@ -190,9 +169,7 @@ export const RegisterForm = () => {
                     0x421_EXE
                   </span>
                   <span className="uppercase tracking-widest font-bold">Register_User</span>
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
+                  <Codicon name="arrow-right" className="group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
