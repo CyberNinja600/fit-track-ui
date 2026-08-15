@@ -2,7 +2,7 @@ import axios from 'axios'
 import type { AxiosInstance, AxiosError, AxiosResponse } from 'axios'
 import { STORAGE_KEYS } from '../constants'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api'
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

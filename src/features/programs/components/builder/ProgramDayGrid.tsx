@@ -79,8 +79,8 @@ const DropSlot = ({ kind }: { kind: SlotKind }) => {
 }
 
 export const ProgramDayGrid = ({ days }: ProgramDayGridProps) => (
-  <div className="flex-1 overflow-x-auto overflow-y-hidden custom-scrollbar bg-background flex flex-col">
-    <div className="flex h-full min-w-max p-gutter gap-4">
+  <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-background">
+    <div className="flex h-full min-w-max gap-4 overflow-x-auto overflow-y-hidden p-gutter custom-scrollbar">
       {days.map((day) => (
         <div key={day.id} className={`w-72 flex flex-col h-full ${day.faded ? 'opacity-80' : ''}`}>
           <div className="mb-4 flex items-center justify-between px-2">

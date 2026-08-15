@@ -6,8 +6,8 @@ interface WeekSelectorProps {
 }
 
 export const WeekSelector = ({ weeks, activeWeek, onWeekChange, onAddWeek }: WeekSelectorProps) => (
-  <aside className="w-16 md:w-48 border-r border-outline-variant bg-surface-container-low overflow-y-auto custom-scrollbar">
-    <div className="p-4 space-y-2">
+  <aside className="h-full min-h-0 w-16 overflow-y-auto border-r border-outline-variant bg-surface-container-low custom-scrollbar md:w-48">
+    <div className="space-y-2 p-4">
       {weeks.map((week, index) => {
         const isActive = activeWeek === index
 
