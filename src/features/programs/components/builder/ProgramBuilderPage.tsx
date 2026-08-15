@@ -3,34 +3,20 @@ import { ComponentLibraryDrawer } from './ComponentLibraryDrawer'
 import { ProgramBuilderToolbar } from './ProgramBuilderToolbar'
 import { ProgramDayGrid } from './ProgramDayGrid'
 import { WeekSelector } from './WeekSelector'
-import {
-  builderDays,
-  nutritionLibrary,
-  weeks as initialWeeks,
-  workoutLibrary,
-  type TopNavKey,
-} from './programBuilderData'
+import { builderDays, nutritionLibrary, weeks as initialWeeks, workoutLibrary } from './programBuilderData'
 
 export const ProgramBuilderPage = () => {
-  const [activeTopTab, setActiveTopTab] = useState<TopNavKey>('builder')
   const [activeWeek, setActiveWeek] = useState(0)
   const [weeks, setWeeks] = useState(initialWeeks)
-  const [searchValue, setSearchValue] = useState('')
-  const [isLibraryOpen, setIsLibraryOpen] = useState(false)
+  const [isLibraryOpen] = useState(false)
 
   const filteredWorkouts = useMemo(() => {
-    return workoutLibrary.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-  }, [searchValue])
+    return workoutLibrary.filter((item) => item.title.toLowerCase().includes(''))
+  }, [])
 
   const filteredNutrition = useMemo(() => {
-    return nutritionLibrary.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-  }, [searchValue])
-
-  const handleTopTabChange = (tab: TopNavKey) => {
-    setActiveTopTab(tab)
-    setIsLibraryOpen(tab === 'library')
-    console.log(`Program builder top navigation: ${tab}`)
-  }
+    return nutritionLibrary.filter((item) => item.title.toLowerCase().includes(''))
+  }, [])
 
   const handleAddWeek = () => {
     const nextWeek = `WEEK_${String(weeks.length + 1).padStart(2, '0')}`

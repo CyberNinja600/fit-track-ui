@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { useAuthStore } from './store/authStore'
 import { ROUTES } from './constants'
-import { ProtectedRoute } from './lib/ProtectedRoute'
 
 // Pages
 import { Login } from './pages/Login'
@@ -13,6 +12,7 @@ import { ProgramDetail } from './pages/ProgramDetail'
 import { CreateProgram } from './pages/CreateProgram'
 import { EditProgram } from './pages/EditProgram'
 import { ProgramCalendar } from './pages/ProgramCalendar'
+import { EmptySectionPage } from './pages/EmptySectionPage'
 // Add this at the top of your entry file
 
 const queryClient = new QueryClient({
@@ -36,19 +36,15 @@ function App() {
           <Route path={ROUTES.REGISTER} element={!isAuthenticated ? <Register /> : <Navigate to={ROUTES.DASHBOARD} />} />
 
           {/* Protected Routes */}
-          <Route
-            path={ROUTES.DASHBOARD}
-            element={
-              <ProtectedRoute requiredRole="trainer">
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.PROGRAMS} element={<Programs />} />
           <Route path={ROUTES.CREATE_PROGRAM} element={<CreateProgram />} />
           <Route path={ROUTES.PROGRAM_DETAIL} element={<ProgramDetail />} />
           <Route path={ROUTES.EDIT_PROGRAM} element={<EditProgram />} />
           <Route path={ROUTES.PROGRAM_CALENDAR} element={<ProgramCalendar />} />
+          <Route path="/clients" element={<EmptySectionPage title="Clients" description="This section is currently empty." />} />
+          <Route path="/analytics" element={<EmptySectionPage title="Analytics" description="This section is currently empty." />} />
+          <Route path="/calendar" element={<EmptySectionPage title="Calendar" description="This section is currently empty." />} />
 
           {/* Fallback */}
           <Route path={ROUTES.HOME} element={<Navigate to={isAuthenticated ? ROUTES.DASHBOARD : ROUTES.LOGIN} />} />

@@ -145,10 +145,20 @@ export default {
           "from, to": { opacity: "1" },
           "50%": { opacity: "0" },
         },
+        scanlines: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(10px)" },
+        },
+        scan: {
+          "0%": { top: "0%" },
+          "100%": { top: "100%" },
+        },
       },
 
       animation: {
         blink: "blink 1s step-end infinite",
+        scanlines: "scanlines 0.15s linear infinite",
+        scan: "scan 8s linear infinite",
       },
     },
   },
@@ -192,6 +202,19 @@ export default {
         },
         ".chart-bar": {
           transition: "height 1s cubic-bezier(0.4, 0, 0.2, 1)",
+        },
+        ".terminal-grid": {
+          "background-image": "linear-gradient(rgba(30, 41, 59, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 41, 59, 0.2) 1px, transparent 1px)",
+          "background-size": "40px 40px",
+        },
+        ".scanline": {
+          "width": "100%",
+          "height": "2px",
+          "background": "rgba(162, 201, 255, 0.1)",
+          "position": "absolute",
+          "animation": "scan 8s linear infinite",
+          "z-index": "10",
+          "pointer-events": "none",
         },
         "@keyframes blink": {
             "from, to": { opacity: "1" },

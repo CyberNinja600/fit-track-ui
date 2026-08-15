@@ -4,6 +4,7 @@ import { Input } from '../../../components/Input'
 import { Card, CardContent } from '../../../components/Card'
 import { Alert } from '../../../components/Alert'
 import { useLogin } from '../../../hooks/useAuth'
+import { Codicon } from '../../../components/Codicon'
 
 
 export const LoginForm = () => {
@@ -41,30 +42,23 @@ export const LoginForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4 ">
           {error && <Alert variant="error" title="Login failed" children={(error as any).response?.data?.message || 'Please try again'} />}
 
-          
-          <div className="relative w-full ">
-            <span className="absolute left-3 top-[53%] material-symbols-outlined text-on-surface-variant flex h-auto items-center justify-center">
-              <div className="text-sm  flex  items-center justify-center">alternate_email</div>
-            </span>
+          <Input
+            label="Identity_Handle"
+            icon="mail"
+            id="email"
+            labelClassName="block text-sm font-medium text-gray-700 mb-1 text-label-sm text-primary uppercase font-data-mono"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={errors.email}
+            placeholder="USER@KERNEL.IO"
+            className="w-full bg-surface-container-lowest border border-outline-variant text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/30 py-3 pl-8 pr-4 rounded-none font-mono transition-all"
+          />
 
-            <Input
-              label="Identity_Handle"
-              labelClassName="block text-sm font-medium text-gray-700 mb-1 text-label-sm text-primary uppercase font-data-mono"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={errors.email}
-              placeholder="USER@KERNEL.IO"
-              className="w-full bg-surface-container-lowest border border-outline-variant text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/30 py-3 pl-8 pr-4 rounded-none font-mono transition-all"
-            />
-          </div>
-
-          <div className="relative w-full font-stretch-extra-condensed">
-            <span className="absolute left-3 top-[53%] material-symbols-outlined text-on-surface-variant flex h-auto items-center justify-center ">
-              <div className="text-sm  flex  items-center justify-center">key</div>
-            </span>
           <Input
             label="Access Cipher"
+            icon="key"
+            id="password"
             labelClassName="block text-sm font-medium text-gray-700 mb-1 text-label-sm text-primary uppercase font-data-mono"
             type="password"
             value={password}
@@ -73,10 +67,10 @@ export const LoginForm = () => {
             placeholder="••••••••"
             className="w-full bg-surface-container-lowest border border-outline-variant text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/30 py-3 pl-8 pr-4 rounded-none font-mono transition-all"
           />
-          </div>
 
             <button type="submit" disabled={isPending} className="w-full bg-primary-container text-on-primary-container font-headline-lg-mobile md:font-headline-lg py-4 border border-primary/50 hover:bg-primary-container/80 active:scale-95 transition-all flex items-center justify-center gap-3 disabled:cursor-not-allowed disabled:opacity-70">
-              <span className="material-symbols-outlined">{isPending ? 'progress_activity' : 'login'}</span>{isPending ? 'Signing in...' : 'Sign In'}
+              <Codicon name={isPending ? 'sync' : 'sign-in'} className="text-base" />
+              {isPending ? 'Signing in...' : 'Sign In'}
             </button>
 
           <div className="text-center">
